@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çatar Torna</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e0e0e0;
+        position: relative;
+        animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    header {
+        background-color: #6495ed;
+        color: #fff;
+        padding: 0.5rem;
+        text-align: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: slideDown 1s ease-in-out;
+    }
+
+    @keyframes slideDown {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    header img {
+        position: absolute;
+        top: 0rem;
+        left: 0rem;
+        width: 190px;
+        height: 106px;
+        object-fit: cover;
+        border-radius: 1px;
+        transition: transform 0.5s ease;
+    }
+
+    header img:hover {
+        transform: scale(1.05);
+    }
+
+    header h1 {
+        color: #000;
+        margin-left: 0px;
+    }
+
+    nav {
+        background-color: #000000;
+        color: #000000;
+        padding: 0.5rem 0;
+        text-align: center;
+        position: relative;
+        top: -0.5rem;
+        animation: slideUp 1s ease-in-out;
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin: 0 1rem;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+        color: #6495ed;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        margin-top: 0;
+    }
+
+    section {
+        background-color: #fff;
+        padding: 0.5rem;
+        border-radius: 150px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 1200px;
+        text-align: center;
+        margin-bottom: 2rem;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .slider-container {
+        position: relative;
+        width: 50%;
+        max-width: 325px;
+        overflow: hidden;
+    }
+
+    .slider-images {
+        display: flex;
+        transition: transform 1s ease-in-out;
+    }
+
+    .slider-images img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.5s ease;
+    }
+
+    .slider-images img:hover {
+        transform: scale(1.05);
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 69%;
+        transform: translateY(-50%);
+        color: #000;
+        font-weight: bold;
+        font-size: 24px;
+        user-select: none;
+        background: none;
+        border: none;
+        z-index: 10;
+        transition: color 0.5s, transform 0.5s;
+    }
+
+    .prev:hover, .next:hover {
+        color: #6495ed;
+        transform: scale(1.2);
+    }
+
+    .prev {
+        left: 770px;
+    }
+
+    .next {
+        right: 770px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <img src="torna.png" alt="Logo">
+        <h1>ÇATAR TORNA</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h1 class="main-heading">Türkiye'nin En İyi Torna Dükkanı'na Hoşgeldiniz!</h1>
+            <p>Kaliteli Hizmet, Kaliteli Ürünler, Kaliteli İşçilik ile Sizlere 7/24 Hizmet Sunmaktayız!</p>
+        </section>
+
+        <h4 class="main-heading">Örnek Fotoğraflar</h4>
+
+        <div class="slider-container">
+            <div class="slider-images">
+                <img src="ürün10.png" alt="Ürün 10">
+                <img src="ürün1.png" alt="Ürün 1">
+                <img src="ürün3.png" alt="Ürün 2">
+                <img src="ürün4.png" alt="Ürün 3">
+                <img src="ürün5.png" alt="Ürün 5">
+                <img src="ürün6.png" alt="Ürün 6">
+                <img src="ürün7.png" alt="Ürün 7">
+                <img src="ürün8.png" alt="Ürün 8">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentSlide = 0;
+
+        function changeSlide(n) {
+            const slides = document.querySelectorAll('.slider-images img');
+            const totalSlides = slides.length;
+
+            currentSlide = (currentSlide + n + totalSlides) % totalSlides;
+
+            const offset = -currentSlide * 100;
+            document.querySelector('.slider-images').style.transform = `translateX(${offset}%)`;
+        }
+    </script>
+
+<a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+<a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+</body>
+</html>
